@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1755039705694,
-      "tag": "0000_good_ghost_rider",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1755039804118,
-      "tag": "0001_striped_luckman",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1755043701702,
-      "tag": "0002_conscious_groot",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1755125126162,
-      "tag": "0003_stale_lorna_dane",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1755125982340,
-      "tag": "0004_talented_captain_cross",
+      "when": 1755211034291,
+      "tag": "0000_fixed_shen",
       "breakpoints": true
     }
   ]

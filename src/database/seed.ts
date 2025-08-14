@@ -1,31 +1,19 @@
 import { db } from "./client"
 import { courses, enrollments, users } from "./schema"
 import { fakerPT_BR as faker } from "@faker-js/faker"
+import { hash } from "argon2"
 
 async function seed() {
     try {
-        console.log("Iniciando seed do banco de dados...");
-
-        // Test database connection first
-        console.log("Testando conexão com o banco...");
-
-        // Add a simple connection test
-        await db.select().from(users).limit(1);
-        console.log("Conexão com o banco estabelecida!");
-
-        // Clear existing data (optional)
-        console.log("Limpando dados existentes...");
-        await db.delete(enrollments);
-        await db.delete(courses);
-        await db.delete(users);
+        const hashPassword = await hash("123456");
 
         // Seed users
         const usersInsert = await db.insert(users).values([
-            { name: faker.person.fullName(), email: faker.internet.email() },
-            { name: faker.person.fullName(), email: faker.internet.email() },
-            { name: faker.person.fullName(), email: faker.internet.email() },
-            { name: faker.person.fullName(), email: faker.internet.email() },
-            { name: faker.person.fullName(), email: faker.internet.email() },
+            { name: faker.person.fullName(), email: faker.internet.email(), role: 'USER', password: hashPassword },
+            { name: faker.person.fullName(), email: faker.internet.email(), role: 'USER', password: hashPassword },
+            { name: faker.person.fullName(), email: faker.internet.email(), role: 'USER', password: hashPassword },
+            { name: faker.person.fullName(), email: faker.internet.email(), role: 'USER', password: hashPassword },
+            { name: faker.person.fullName(), email: faker.internet.email(), role: 'USER', password: hashPassword },
         ]).returning()
 
         console.log(`${usersInsert.length} usuários criados`);
@@ -48,10 +36,8 @@ async function seed() {
         console.log(`${enrollmentsInsert.length} matrículas criadas`);
         console.log("Seed concluído!");
 
-        process.exit(0);
     } catch (error) {
         console.error("Erro durante o seed:", error);
-        process.exit(1);
     }
 }
 
