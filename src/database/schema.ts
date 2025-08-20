@@ -1,7 +1,7 @@
 
-import { pgEnum } from 'drizzle-orm/pg-core'
+import { pgEnum, uniqueIndex } from 'drizzle-orm/pg-core'
 import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core'
-
+import { union } from 'zod'
 
 export const userRole = pgEnum('user_role', ['ADMIN', 'USER'])
 
@@ -24,4 +24,7 @@ export const enrollments = pgTable('enrollments', {
     userId: uuid().notNull().references(() => users.id),
     courseId: uuid().notNull().references(() => courses.id),
     createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
-})
+}, table => [
+    uniqueIndex().on(table.userId, table.courseId)
+]
+)

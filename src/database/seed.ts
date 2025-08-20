@@ -37,7 +37,7 @@ async function seed() {
         console.log("Seed concluído!");
 
     } catch (error) {
-        console.error("Erro durante o seed:", error);
+        console.error("Seed Error:", error);
     }
 }
 

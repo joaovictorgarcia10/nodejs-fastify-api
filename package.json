@@ -8,7 +8,9 @@
         "db:seed": "tsx --env-file .env src/database/seed.ts",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
-        "db:studio": "drizzle-kit studio"
+        "db:studio": "drizzle-kit studio",
+        "pretest": "dotenv -e .env.test drizzle-kit migrate",
+        "test": "dotenv -e .env.test vitest run --coverage"
     },
     "keywords": [],
     "author": "",

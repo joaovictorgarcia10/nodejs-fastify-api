@@ -20,6 +20,7 @@ export const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
                         z.object({
                             id: z.uuid(),
                             title: z.string(),
+                            description: z.string().nullable(),
                             enrollments: z.number(),
                         })
                     ),
@@ -41,13 +42,14 @@ export const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
                 .select({
                     id: courses.id,
                     title: courses.title,
+                    description: courses.description,
                     enrollments: count(enrollments.id),
                 })
                 .from(courses)
                 .leftJoin(enrollments, eq(enrollments.courseId, courses.id))
                 .orderBy(asc(courses[orderBy]))
                 .offset((page - 1) * 2)
-                .limit(10)
+                .limit(2)
                 .where(and(...conditions))
                 .groupBy(courses.id),
             db.$count(courses, and(...conditions))

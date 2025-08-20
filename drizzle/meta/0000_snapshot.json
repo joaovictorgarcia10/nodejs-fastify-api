@@ -1,5 +1,5 @@
 {
-  "id": "afa813d8-2b86-4df2-a08b-0eb9791f0c3a",
+  "id": "49d3a48b-9d6a-4e81-a9b2-a74e0bfef288",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -75,7 +75,29 @@
           "default": "now()"
         }
       },
-      "indexes": {},
+      "indexes": {
+        "enrollments_userId_courseId_index": {
+          "name": "enrollments_userId_courseId_index",
+          "columns": [
+            {
+              "expression": "userId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "courseId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
       "foreignKeys": {
         "enrollments_userId_users_id_fk": {
           "name": "enrollments_userId_users_id_fk",
