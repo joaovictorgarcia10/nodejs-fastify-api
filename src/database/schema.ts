@@ -1,7 +1,6 @@
 
 import { pgEnum, uniqueIndex } from 'drizzle-orm/pg-core'
 import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core'
-import { union } from 'zod'
 
 export const userRole = pgEnum('user_role', ['ADMIN', 'USER'])
 

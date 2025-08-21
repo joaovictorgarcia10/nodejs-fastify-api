@@ -12,7 +12,7 @@ test('POST /users', async () => {
         .send({
             name: faker.person.fullName(),
             email: faker.internet.email(),
-            password: faker.internet.password({ length: 8 }),
+            password: faker.internet.password({ length: 6 }),
             role: 'USER'
         });
 
