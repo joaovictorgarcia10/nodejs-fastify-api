@@ -27,7 +27,6 @@ export const getCourseByIdRoute: FastifyPluginAsyncZod = async (server) => {
             },
         },
     }, async (request, reply) => {
-        const user = getUserFromRequest(request)
         const courseId = request.params.id
 
         const result = await db
