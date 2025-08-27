@@ -1,17 +1,17 @@
 import { db } from "../../src/database/client";
 import { users } from "../../src/database/schema";
-import { faker } from "@faker-js/faker";
+import { fakerPT_BR as faker } from "@faker-js/faker"
 import jwt from 'jsonwebtoken'
 import { hash } from "argon2";
-import { randomUUID } from 'node:crypto';
 
 export async function makeUser(role?: 'ADMIN' | 'USER') {
-    const passwordBeforeHash = randomUUID()
+    const passwordBeforeHash = '123456'
+    const passwordHash = await hash(passwordBeforeHash)
 
     const result = await db.insert(users).values({
         name: faker.person.fullName(),
         email: faker.internet.email(),
-        password: await hash(passwordBeforeHash),
+        password: passwordHash,
         role,
     }).returning()
 
