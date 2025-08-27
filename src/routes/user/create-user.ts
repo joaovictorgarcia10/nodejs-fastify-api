@@ -8,10 +8,6 @@ import { checkUserRole } from '../../pre-handlers/check-user-role'
 
 export const createUser: FastifyPluginAsyncZod = async (server) => {
     server.post('/users', {
-        preHandler: [
-            checkRequestJwt,
-            checkUserRole('ADMIN')
-        ],
         schema: {
             tags: ['users'],
             summary: 'Create a new user',

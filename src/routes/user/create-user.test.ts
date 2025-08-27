@@ -8,12 +8,9 @@ import { hash } from 'argon2';
 test('POST /users', async () => {
     await server.ready()
 
-    const { token } = await makeAuthenticatedUser('ADMIN')
-
     const response = await request(server.server)
         .post('/users')
         .set('Content-Type', 'application/json')
-        .set('Authorization', token)
         .send({
             name: faker.person.fullName(),
             email: faker.internet.email(),
@@ -28,12 +25,9 @@ test('POST /users', async () => {
 test('POST /users - should return 400 for invalid email', async () => {
     await server.ready()
 
-    const { token } = await makeAuthenticatedUser('ADMIN')
-
     const response = await request(server.server)
         .post('/users')
         .set('Content-Type', 'application/json')
-        .set('Authorization', token)
         .send({
             name: faker.person.fullName(),
             email: 'invalid-email',
@@ -48,12 +42,10 @@ test('POST /users - should return 400 for invalid email', async () => {
 test('POST /users - should return 400 for short password', async () => {
     await server.ready()
 
-    const { token } = await makeAuthenticatedUser('ADMIN')
 
     const response = await request(server.server)
         .post('/users')
         .set('Content-Type', 'application/json')
-        .set('Authorization', token)
         .send({
             name: faker.person.fullName(),
             email: faker.internet.email(),
