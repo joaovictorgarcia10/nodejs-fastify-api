@@ -1,4 +1,4 @@
-# Node.js API - Course Management System
+# Course Management System
 
 A robust and scalable RESTful API built with Node.js, Fastify, and PostgreSQL for managing courses, users, and enrollments.
 
