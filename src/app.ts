@@ -4,6 +4,8 @@ import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchema
 import { createCourseRoute } from './routes/courses/create-course.ts'
 import { getCourseByIdRoute } from './routes/courses/get-course-by-id.ts'
 import { getCoursesRoute } from './routes/courses/get-courses.ts'
+import { createEnrollmentRoute } from './routes/enrollments/create-enrollment.ts'
+import { getEnrollmentsRoute } from './routes/enrollments/get-enrollments.ts'
 import scalarAPIReference from '@scalar/fastify-api-reference'
 import { createUser } from './routes/user/create-user.ts'
 import { authenticate } from './routes/user/login.ts'
@@ -42,6 +44,9 @@ server.setSerializerCompiler(serializerCompiler)
 server.register(createCourseRoute)
 server.register(getCourseByIdRoute)
 server.register(getCoursesRoute)
+
+server.register(createEnrollmentRoute)
+server.register(getEnrollmentsRoute)
 
 server.register(createUser)
 server.register(authenticate)

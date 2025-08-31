@@ -3,8 +3,6 @@ import { z } from 'zod'
 import { db } from '../../database/client'
 import { users } from '../../database/schema'
 import { hash } from 'argon2'
-import { checkRequestJwt } from '../../pre-handlers/check-request-jwt'
-import { checkUserRole } from '../../pre-handlers/check-user-role'
 
 export const createUser: FastifyPluginAsyncZod = async (server) => {
     server.post('/users', {
